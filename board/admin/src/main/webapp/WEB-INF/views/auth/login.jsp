@@ -17,9 +17,9 @@
 
         <!-- Login Form -->
         <form>
-            <input type="text" id="userId" class="fadeIn second" name="login" placeholder="아이디를 입력해주세요" required>
-            <input type="text" id="password" class="fadeIn third" name="login" placeholder="비밀번호를 입력해주세요" required>
-            <input type="submit" class="fadeIn fourth" value="Log In">
+            <input type="text" id="loginId" class="fadeIn second" name="un" placeholder="아이디를 입력해주세요" required>
+            <input type="text" id="loginPw" class="fadeIn third" name="up" placeholder="비밀번호를 입력해주세요" required>
+            <input type="button" class="fadeIn fourth" value="Log In" onclick="loginSubmit()">
         </form>
 
         <!-- Remind Passowrd -->

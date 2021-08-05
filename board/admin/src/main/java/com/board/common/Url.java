@@ -1,25 +1,43 @@
 package com.board.common;
 
-/* api url Á¤ÀÇ */
+/* api url ì •ì˜ */
 public final class Url {
 	public static final String TILES_ROOT = "/tiles/view";
 	public static final String TILES_AJAX = "/tiles/ajax";
 	
-	/* ·Î±×ÀÎ */
+	/* ë¡œê·¸ì¸ */
 	public static final class AUTH {
 		
-		/* ·Î±×ÀÎ url */
+		/* ë¡œê·¸ì¸ url */
 		public static final String LOGIN = "/auth/login";
 		
-		/* ·Î±×ÀÎ jsp */
+		/* ë¡œê·¸ì¸ jsp */
 		public static final String LOGIN_JSP = TILES_ROOT + "/auth/login";
 		
-		/* È¸¿ø°¡ÀÔ url */
+		/* íšŒì›ê°€ì… url */
 		public static final String JOIN = "/auth/join";
 		
-		/* È¸¿ø°¡ÀÔ jsp */
+		/* íšŒì›ê°€ì… jsp */
 		public static final String JOIN_JSP = TILES_ROOT + "/auth/join";
+	
+		/* ì‚¬ìš©ì ë“±ë¡ */
+		public static final String INSERT_USER = "/auth/insertUser";
 		
+		/* ë¡œê·¸ì¸ ì¸ì¦ ìš”ì²­ */
+		public static final String LOGIN_PROC = "/auth/login-proc";
+		
+		/* ë¡œê·¸ì•„ì›ƒ ìš”ì²­ */
+		public static final String LOGOUT_PROC = "/auth/logout-proc";
+		
+	}
+	
+	/* ë©”ì¸ í™”ë©´ */
+	public static final class MAIN {
+		/* ë¡œê·¸ì¸ url */
+		public static final String MAIN = "/";
+		
+		/* ë¡œê·¸ì¸ jsp */
+		public static final String MAIN_JSP = TILES_ROOT + "/main/list";
 	}
 	
 }

@@ -10,7 +10,9 @@ dependencies {
 	implementation project(':core')
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	testImplementation('org.springframework.security:spring-security-test')
+	
 	//db
 	runtimeOnly 'mysql:mysql-connector-java'
    
@@ -23,6 +25,9 @@ dependencies {
 	implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.2.6.RELEASE'
 
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	
+	implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.3.0.RELEASE'
+	implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: '5.3.0.RELEASE'
    
 	// Apache Http Requests
 	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.12'         // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
@@ -36,4 +41,7 @@ dependencies {
 	implementation group: 'org.apache.taglibs', name: 'taglibs-standard-impl', version: '1.2.5'      // https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl
 	providedRuntime group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'      // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
 	implementation group: 'javax.servlet', name: 'jstl'                                    // https://mvnrepository.com/artifact/javax.servlet/jstl
+	
+	/* gson */
+	implementation 'com.google.code.gson:gson:2.8.6'
 }

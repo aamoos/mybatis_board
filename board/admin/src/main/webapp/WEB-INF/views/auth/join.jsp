@@ -19,10 +19,10 @@
     <form>
       <input type="text" id="userId" class="fadeIn second" name="login" placeholder="아이디를 입력해주세요." required>
       <input type="text" id="password" class="fadeIn third" name="login" placeholder="비밀번호를 입력해주세요." required>
-      <input type="text" id="name" class="fadeIn third" name="login" placeholder="이름을 입력해주세요.">
+      <input type="text" id="userName" class="fadeIn third" name="login" placeholder="이름을 입력해주세요.">
       <input type="text" id="email" class="fadeIn third" name="login" placeholder="이메일을 입력해주세요.">
       <input type="text" id="handPhoneNo" class="fadeIn third" name="login" placeholder="핸드폰번호를 입력해주세요.">
-      <input type="submit" class="fadeIn fourth" value="Join">
+      <input type="button" class="fadeIn fourth" value="Join" onclick="join()">
     </form>
 
     <!-- Remind Passowrd -->

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- FAQ SQL Mapper -->
+<mapper namespace="com.board.dao.UserMapper">
+
+	<!-- 사용자 정보 조회 -->
+	<select id="getUserInfo" parameterType="String" resultType="UserInfo">
+		SELECT
+             USER_ID
+            ,USER_NAME
+            ,PASSWORD
+            ,EMAIL
+            ,HAND_PHONE_NO
+            ,USE_YN
+        FROM
+            TB_USERS
+        WHERE
+        	USER_ID = #{userId}    
+    </select>
+    
+    <!-- 사용자 권한 조회 -->
+	<select id="getUserAuthorities" parameterType="String" resultType="UserAuthority">
+		SELECT
+			TA.AUTHORITY
+     		,(SELECT CODE_EXP FROM TB_CODE TCD WHERE TCD.CODE_NO = '200' AND TCD.CODE_NAME = TA.AUTHORITY) AS AUTHORITY_NM
+		FROM
+     		TB_AUTHORITIES TA
+     	WHERE
+     		TA.USER_ID = #{userId}	
+     </select>
+
+	<!-- 사용자 등록 -->
+	<insert id="insertUser" parameterType="UserInfo">
+		INSERT INTO
+			TB_USERS(
+				 USER_ID
+				,PASSWORD
+				,USER_NAME
+				,EMAIL
+				,HAND_PHONE_NO
+				,USE_YN
+			)
+			VALUES(
+				 #{userId}
+				,#{password}
+				,#{userName}
+				,#{email}
+				,#{handPhoneNo}
+				,'1'
+			)
+	</insert>
+	
+	<!-- 사용자 중복체크 -->
+	<select id="duplicateUserCheck" parameterType="String" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			TB_USERS
+		WHERE
+			USER_ID = #{userId}		
+	</select>
+	
+	<!-- 사용자 권한 등록 -->
+	<insert id="insertUserAuth" parameterType="UserInfo">
+		INSERT INTO
+			TB_AUTHORITIES(
+				 USER_ID
+				,AUTHORITY
+			)
+			VALUES(
+				 #{userId}
+				,'USER'
+			)
+	</insert>
+	
+</mapper>

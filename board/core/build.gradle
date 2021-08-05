@@ -7,4 +7,7 @@ jar {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	
+	//security core
+	implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.3.1.RELEASE'
 }
