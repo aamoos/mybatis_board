@@ -60,7 +60,8 @@ public class AdminAuthenticationProvider implements AuthenticationProvider{
 					auth.setAuthority(getUserAuthorities.getAuthority());
 					auth.setAuthorityNm(getUserAuthorities.getAuthorityNm());
 					authorities.add(auth);
-					userInfo.setAuthorities(authorities);					
+					userInfo.setAuthority(getUserAuthorities.getAuthority());
+					userInfo.setAuthorityNm(getUserAuthorities.getAuthorityNm());
 				}
 				
 				//권한이 없을 경우

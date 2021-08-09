@@ -2,8 +2,11 @@ package com.board.common;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.MediaType;
+
 import com.google.gson.JsonObject;
 
 /* 최상위 컴포넌트 */
@@ -19,6 +22,10 @@ public abstract class CoTopComponent {
 		PrintWriter pw = res.getWriter();
 		pw.write(message);
 		pw.close();
+	}
+	
+	protected String makePageDispatcherUrl(String requestUrl, String dispatcherPath) {
+		return Url.TILES_AJAX + dispatcherPath + requestUrl.substring(requestUrl.lastIndexOf("/"));
 	}
 	
 }

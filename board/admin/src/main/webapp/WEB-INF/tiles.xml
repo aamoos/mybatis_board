@@ -75,5 +75,10 @@
 	<definition name="/errors/*"                   extends="tiles/error/template">
 		<put-attribute name="contents"           value="/WEB-INF/errors/{1}.jsp"/>
 	</definition>
+	
+	<!-- login -->
+	<definition name="/tiles/single/auth/login" template="/WEB-INF/views/auth/login.jsp">
+		<put-attribute name="meta"			value="/WEB-INF/template/common/meta.jsp" />
+	</definition>
    
 </tiles-definitions>

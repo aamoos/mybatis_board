@@ -32,12 +32,6 @@ public class LoginController {
 		return Url.AUTH.JOIN_JSP;
 	}
 	
-	//메인화면
-	@GetMapping(Url.MAIN.MAIN)
-	public String main() {
-		return Url.MAIN.MAIN_JSP;
-	}
-	
 	//사용자 등록
 	@PostMapping(Url.AUTH.INSERT_USER)
 	@ResponseBody

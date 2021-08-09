@@ -4,6 +4,9 @@ package com.board.common;
 
 public final class Constants {
 	
+	//다국어 Cookie 이름
+	public static final String APP_LOCALE_COOKIE = "APP_LOCALE";
+	
 	//프로젝트 패키지 이름
 	public final static String APP_DEFAULT_PACKAGE_NAME = "com.board";
 	
@@ -31,7 +34,7 @@ public final class Constants {
 	};
 	
 	/** 정적 리소스 매핑 URL 패턴 (위에꺼랑 순서 맞아야함) */
-	public final static String[] STATIC_RESOURCES_URL_PATTERS = {
+	public final static String[] STATIC_RESOURCES_URL_PATTERNS = {
 			 STATIC_RES[0]+"/**"
 			,STATIC_RES[1]+"/**"
 			,STATIC_RES[2]+"/**"
@@ -41,5 +44,28 @@ public final class Constants {
 			,STATIC_RES[6]
 			,STATIC_RES[7]+"/**"
 	};
+	
+	/** 정적 리소스 기본 페이지 classpath */
+	private static final String STATIC_PATH = "classpath:/static";
+	
+	/** 정적 리스스 위치 */
+	public final static String[] CLASSPATH_RESOURCE_LOCATIONS = {
+			STATIC_PATH+STATIC_RES[0]+"/"
+			,STATIC_PATH+STATIC_RES[1]+"/"
+			,STATIC_PATH+STATIC_RES[2]+"/"
+			,STATIC_PATH+STATIC_RES[3]+"/"
+			,STATIC_PATH+STATIC_RES[4]+"/"
+			,STATIC_PATH+STATIC_RES[5]+"/"
+			,STATIC_PATH+STATIC_RES[6]
+			,STATIC_PATH+STATIC_RES[7]+"/"
+	};
+	
+	
+	public static final int DEFAULT_PAGE_NUMBER = 1;
+	public static final int DEFAULT_PAGE_SIZE = 10;
+	
+	// server health check url
+	public static final String HEALTH_CHECK_URL = "/healthCheck";
+	
 	
 }

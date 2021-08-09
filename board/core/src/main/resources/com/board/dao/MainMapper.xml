@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- FAQ SQL Mapper -->
+<mapper namespace="com.board.dao.MainMapper">
+	
+	<!-- 게시판 리스트 조회  -->
+	<select id="selectBoardList" resultType="CamelMap">
+		SELECT
+			 TB.BOARD_IDX
+			,TB.BOARD_TITLE
+			,TB.BOARD_CONTENT
+			,TB.REG_ID
+			,TB.VIEW_COUNT
+			,TB.USE_YN
+			,TB.REG_DATE
+			,(SELECT TC.CODE_EXP FROM TB_CODE TC WHERE TC.CODE_NO = '200' AND TC.CODE_NAME = TA.AUTHORITY) AS REG_NAME
+		FROM
+			 TB_BOARD TB
+			,TB_AUTHORITIES TA
+		WHERE
+			USE_YN = 'Y'
+		AND
+			TB.REG_ID = TA.USER_ID	
+		<if test="pageable != null">
+			LIMIT #{pageable.offset}, #{size}
+		</if>			
+	</select>
+	
+	<!-- 게시판 count -->
+	<select id="selectBoardListCnt" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			TB_BOARD
+		WHERE
+			USE_YN = 'Y'
+	</select>
+	
+	<!-- 게시판 상세 조회 -->
+	<select id="selectBoard" resultType="CamelMap">
+		SELECT
+			 TB.BOARD_IDX
+			,TB.BOARD_TITLE
+			,TB.BOARD_CONTENT
+			,TB.REG_ID
+			,TB.VIEW_COUNT
+			,TB.USE_YN
+			,TB.REG_DATE
+			,(SELECT TC.CODE_EXP FROM TB_CODE TC WHERE TC.CODE_NO = '200' AND TC.CODE_NAME = TA.AUTHORITY) AS REG_NAME
+		FROM
+			TB_BOARD TB
+			,TB_AUTHORITIES TA
+		WHERE
+			USE_YN = 'Y'
+		AND
+			TB.REG_ID = TA.USER_ID
+		AND
+			TB.BOARD_IDX = #{boardIdx}		
+	</select>
+	
+
+	<!-- 게시판 등록 -->
+	<insert id="insertBoard">
+		INSERT INTO
+			TB_BOARD(
+				  BOARD_TITLE
+				 ,BOARD_CONTENT
+				 ,REG_ID
+				 ,REG_DATE
+			)
+			VALUES(
+				  #{boardTitle}
+				 ,#{boardContent}
+				 ,#{userId}
+				 ,NOW()
+			)
+	</insert>
+	
+	<!-- 게시판 수정 -->
+	<update id="updateBoard">
+		UPDATE 
+			TB_BOARD
+		SET
+			 BOARD_TITLE = #{boardTitle}
+			,BOARD_CONTENT = #{boardContent}
+		WHERE
+			BOARD_IDX = #{boardIdx}		
+	</update>
+	
+	<!-- 조회수 업데이트 -->
+	<update id="updateViewCount">
+		UPDATE
+			TB_BOARD T1
+		SET
+			T1.VIEW_COUNT = #{viewCount}
+		WHERE
+			T1.BOARD_IDX = #{boardIdx}		
+	</update>
+	
+	
+	
+</mapper>

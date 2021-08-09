@@ -21,16 +21,11 @@ public class LoginSuccessHandler extends CoTopComponent implements Authenticatio
 			Authentication auth) throws IOException, ServletException {
 		
 		//default 성공
-		String resultCode = "00";
-		
+		String resultCode = "00";	
 		HttpSession session = request.getSession(true);
 		session.setMaxInactiveInterval(60 * 60 * 3);
-		
 		session.setAttribute("sessUserInfo",((UserInfo) auth.getPrincipal()));
-	    session.setAttribute("authority",((UserInfo) auth.getPrincipal()).getAuthority());
-	    session.setAttribute("authorityNm",((UserInfo) auth.getPrincipal()).getAuthorityNm());
-	    session.setAttribute("auth",((UserInfo) auth.getPrincipal()).getAuth());
-	    
+		
 	    //Response 결과 값을 넣어줌
 	    JsonObject loginResult = new JsonObject();
 	    loginResult.addProperty("resultCode", resultCode);

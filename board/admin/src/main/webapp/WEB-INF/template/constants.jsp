@@ -3,6 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="paginator" uri="/WEB-INF/tlds/paginator.tld" %>
 
 <c:set var="version" value="<%=new java.util.Date()%>" />
 <c:set var="ctxPath" value="${pageContext.request.contextPath eq '/' ? '' : pageContext.request.contextPath}" />

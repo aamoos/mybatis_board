@@ -17,8 +17,8 @@
 
         <!-- Login Form -->
         <form>
-            <input type="text" id="loginId" class="fadeIn second" name="un" placeholder="아이디를 입력해주세요" required>
-            <input type="text" id="loginPw" class="fadeIn third" name="up" placeholder="비밀번호를 입력해주세요" required>
+            <input type="text" id="loginId" class="fadeIn second" name="un" placeholder="아이디를 입력해주세요" onkeyup="enterkey()">
+            <input type="text" id="loginPw" class="fadeIn third" name="up" placeholder="비밀번호를 입력해주세요" onkeyup="enterkey()">
             <input type="button" class="fadeIn fourth" value="Log In" onclick="loginSubmit()">
         </form>
 
@@ -29,3 +29,56 @@
 
     </div>
 </div>
+
+	<script>
+
+	//로그인 submit
+	function loginSubmit(){
+		
+		var params = {
+			 'un' : $.trim($("#loginId").val())
+			,'up' : $("#loginPw").val()
+		}
+		
+		console.log(params);
+		
+		if(params.un == ""){
+			alert("아이디를 입력해주새요");
+			return false;
+		}
+		
+		else if(params.up == ""){
+			alert("비밀번호를 입력해주새요");
+			return false;
+		}
+		
+		$.ajax({
+	         type : 'POST'
+	        ,url : '/auth/login-proc'
+	        ,dataType : 'json'
+	        ,data : params 
+	        ,success : function(result) {
+				console.log(result);
+				if(result.resultCode != "00"){
+					alert(result.resultMessage);
+				}
+				
+				else{
+					location.href=result.targetUrl;
+				}
+				
+	        },
+	        error: function(request, status, error) {
+	          
+	        }
+	    }) 
+	}
+	
+	function enterkey(){
+		if (window.event.keyCode == 13) { 
+			// 엔터키가 눌렸을 때
+			loginSubmit(); 
+		}
+	}
+
+</script>
