@@ -263,9 +263,7 @@ var util = {
          return date;
       }
    },
-    /*날자 포멧 생성 ex)2017-01-01.
-    dev : 김예지
-    date : 2017.03.13*/
+
     dateFormatDate : function(input){
         var out = '';
         if(input){
@@ -279,9 +277,7 @@ var util = {
         }
         return out;
     },
-    /*날자 포멧 생성 ex)2017-01-01 00:00.
-    dev : 김예지
-    date : 2017.08.30*/
+
     dateFormatDateTime : function(input){
         var out = '';
         if(input){

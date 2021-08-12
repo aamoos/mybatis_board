@@ -12,12 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * The Class AjaxInterceptor.
- * @author Think-Tree Inc.
- * @version 1.0.0
- */
-@Component
 @Slf4j
 public class AjaxInterceptor implements HandlerInterceptor {
 

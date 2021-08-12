@@ -24,9 +24,6 @@ import com.navercorp.lucy.security.xss.servletfilter.XssEscapeServletFilter;
 
 /**
  * The Class WebConfig.
- *
- * @author Think-tree inc.
- * @version 1.0.0
  */
 @Configuration
 @EnableWebMvc
@@ -83,6 +80,7 @@ public class WebConfig implements WebMvcConfigurer {
    @Bean
    @Value("${spring.profiles.active}")
    public String activeProfile(String profile) {
+	  System.out.println("profile : " + profile);
       return profile;
    }
    

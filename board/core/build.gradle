@@ -5,6 +5,12 @@ jar {
     enabled = true;
 }
 
+configurations {
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	
@@ -22,5 +28,7 @@ dependencies {
 	
 	// https://mvnrepository.com/artifact/org.apache.ibatis/ibatis-core
 	implementation group: 'org.apache.ibatis', name: 'ibatis-core', version: '3.0'
+	
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 
 }

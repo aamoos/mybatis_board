@@ -9,15 +9,10 @@ var boardCtrl = {
 	
 	init : function(){
 		this.bindData();
-		this.bindEvent();
 	},
 	
 	bindData : function(){
 		goPage(0);
-	},
-	
-	bindEvent : function(){
-	
 	}
 }
 
