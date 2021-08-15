@@ -26,7 +26,7 @@ public final class Url {
 		 
 		/* 로그인 인증 요청 */
 		public static final String LOGIN_PROC = "/auth/login-proc";
-		 
+		  
 		/* 로그아웃 요청 */
 		public static final String LOGOUT_PROC = "/auth/logout-proc";
 	}
