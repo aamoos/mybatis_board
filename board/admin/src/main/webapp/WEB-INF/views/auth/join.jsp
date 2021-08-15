@@ -27,7 +27,7 @@
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" href="/auth/login">뒤로가기</a>
+      <a class="underlineHover" href="${ct:url('AUTH.LOGIN')}">뒤로가기</a>
     </div>
 
   </div>

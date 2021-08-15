@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.board.common.Constants;
 import com.board.common.Url;
+import com.board.common.Url.COMMON;
 
 @Configuration
 @EnableWebSecurity
@@ -59,6 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .authorizeRequests()
          .antMatchers( "/auth/**" ).permitAll()                // 패스워드찾기,회원가입
          .antMatchers( "/" ).permitAll()
+         .antMatchers( COMMON.FILE_DOWNLOAD + "/**" ).permitAll()		//파일다운로드
          .antMatchers( "/**/ajax/**" ).permitAll()
          .antMatchers( "/board/**" ).permitAll()
          .antMatchers( "/resource/**/images/**" ).permitAll()   // image

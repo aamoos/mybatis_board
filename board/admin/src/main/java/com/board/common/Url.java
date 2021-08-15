@@ -19,7 +19,7 @@ public final class Url {
 		public static final String JOIN = "/auth/join";
 		
 		/* 회원가입 jsp */
-		public static final String JOIN_JSP = TILES_ROOT + "/auth/join";
+		public static final String JOIN_JSP = TILES_SINGLE + "/auth/join";
 	
 		/* 사용자 등록 */
 		public static final String INSERT_USER = "/auth/insertUser";
@@ -29,6 +29,16 @@ public final class Url {
 		
 		/* 로그아웃 요청 */
 		public static final String LOGOUT_PROC = "/auth/logout-proc";
+	}
+	
+	/** 공통 */
+	public static final class COMMON {
+		
+		/* 파일 업로드 */
+		public static final String FILE_UPLOAD = "/file-upload";
+		
+		/** 파일 다운로드 */
+		public static final String FILE_DOWNLOAD = "/file-download";
 		
 	}
 	
@@ -58,6 +68,8 @@ public final class Url {
 		/* 메인 글쓰기 jsp */
 		public static final String MAIN_UPDATE_JSP = TILES_ROOT + "/main/update";
 		
+		/** 게시판 삭제 */
+		public static final String MAIN_DELETE = "/board/delete";
 		
 	}
 	

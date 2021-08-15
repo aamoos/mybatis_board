@@ -22,10 +22,10 @@
 				<c:choose>
 					<c:when test="${empty sessUserInfo.authority}">
 						<li><a href="#">회원가입</a></li>
-						<li><a href="/auth/login">로그인</a></li>
+						<li><a href="${ct:url('AUTH.LOGIN')}">로그인</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/auth/logout-proc">로그아웃</a></li>
+						<li><a href="${ct:url('AUTH.LOGOUT_PROC')}">로그아웃</a></li>
 					</c:otherwise>
 				</c:choose>
 				

@@ -30,5 +30,7 @@ dependencies {
 	implementation group: 'org.apache.ibatis', name: 'ibatis-core', version: '3.0'
 	
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+	
+	implementation group: 'commons-io', name: 'commons-io', version: '2.6'
 
 }

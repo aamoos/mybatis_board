@@ -14,16 +14,20 @@
 			,TB.USE_YN
 			,TB.REG_DATE
 			,(SELECT TC.CODE_EXP FROM TB_CODE TC WHERE TC.CODE_NO = '200' AND TC.CODE_NAME = TA.AUTHORITY) AS REG_NAME
+			,(SELECT COUNT(*) FROM TB_BOARD_FILE TBF WHERE TBF.BOARD_IDX = TB.BOARD_IDX ) AS FILE_COUNT
 		FROM
 			 TB_BOARD TB
 			,TB_AUTHORITIES TA
 		WHERE
 			USE_YN = 'Y'
 		AND
-			TB.REG_ID = TA.USER_ID	
+			TB.REG_ID = TA.USER_ID
+		
+		ORDER BY TB.BOARD_IDX DESC		
 		<if test="pageable != null">
 			LIMIT #{pageable.offset}, #{size}
-		</if>			
+		</if>
+				
 	</select>
 	
 	<!-- 게시판 count -->
@@ -58,9 +62,28 @@
 			TB.BOARD_IDX = #{boardIdx}		
 	</select>
 	
+	<!-- 게시판 파일 리스트 조회 -->	
+	<select id="selectBoardFile" resultType="CamelMap">
+		SELECT
+			 TBF.BOARD_FILE_IDX
+			,TBF.BOARD_IDX
+			,TBF.FILE_ID
+			,TBF.USE_YN
+			,TF.ORIG_NM
+			,TF.LOGI_PATH
+		FROM
+			 TB_BOARD_FILE TBF
+			,TB_FILE TF
+		WHERE
+			TBF.USE_YN = 'Y'
+		AND
+			TBF.BOARD_IDX = #{boardIdx}
+		AND
+			TBF.FILE_ID = TF.FILE_ID	
+	</select>
 
 	<!-- 게시판 등록 -->
-	<insert id="insertBoard">
+	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="boardIdx">
 		INSERT INTO
 			TB_BOARD(
 				  BOARD_TITLE
@@ -97,6 +120,28 @@
 			T1.BOARD_IDX = #{boardIdx}		
 	</update>
 	
+	<!-- 게시판 삭제 -->
+	<update id="deleteBoard">
+		UPDATE
+			TB_BOARD
+		SET
+			USE_YN = 'N'
+		WHERE
+			BOARD_IDX = #{boardIdx}		
+	</update>
+	
+	<!-- 게시판 파일 테이블 insert -->
+	<insert id="insertBoardFile">
+		INSERT INTO
+			TB_BOARD_FILE(
+				  BOARD_IDX
+				 ,FILE_ID
+			)
+			VALUES(
+				  #{boardIdx}
+				 ,#{fileId}
+			)
+	</insert>
 	
 	
 </mapper>

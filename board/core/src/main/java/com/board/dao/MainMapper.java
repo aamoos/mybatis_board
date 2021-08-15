@@ -24,9 +24,18 @@ public interface MainMapper {
 	public int updateBoard(Map<String, Object> params);
 	
 	//글쓰기 상세조회
-	public Map<String, Object> selectBoard(String boardIdx);
+	public Map<String, Object> selectBoard(int boardIdx);
+	
+	//게시판 파일리스트 조회
+	public List<Map<String, Object>> selectBoardFile(int boardIdx);
 	
 	//조회수 업데이트
 	public int updateViewCount(Map<String, Object> params);
+	
+	//겍시판 삭제
+	public int deleteBoard(String boardIdx);
+
+	//글쓰기 파일 등록
+	public int insertBoardFile(Map<String, Object> params);
 	
 }

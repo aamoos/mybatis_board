@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ include file="/WEB-INF/template/constants.jsp"%>
+
 <script>
 
 	//로그인 submit
@@ -23,7 +25,7 @@
 	        ,success : function(result) {
 	        	alert(result.resultMsg);
 	        	if(result.resultCode == '00'){
-	        		location.href="/auth/login";
+	        		location.href = "${ct:url('AUTH.LOGIN')}";
 	        	}
 	        },
 	        error: function(request, status, error) {

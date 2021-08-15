@@ -3,6 +3,7 @@ package com.board.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,7 @@ import com.board.common.CoTopComponent;
 import com.board.common.Constants;
 import com.board.common.Url;
 import com.board.common.Url.MAIN;
+import com.board.dao.FileMapper;
 import com.board.dao.MainMapper;
 import com.board.service.MainService;
 
@@ -36,6 +38,7 @@ public class MainController extends CoTopComponent {
 
 	@Autowired MainService mainService;
 	@Autowired MainMapper mainMapper;
+	@Autowired FileMapper fileMapper;
 	
 	//profile
 	@Value("${spring.profile.active")
@@ -74,29 +77,40 @@ public class MainController extends CoTopComponent {
 	@PostMapping(Url.MAIN.MAIN_WRITE)
 	public Map<String, Object> writeSubmit(@RequestBody Map<String, Object> params) {
 		log.info("params={}", params);
+		
+		//글등록
 		mainMapper.insertBoard(params);
+		
+		//파일 등록할게 있을경우만
+		insertBoardFile(params);
 		
 		return params;
 	}
 	
 	//수정화면
 	@GetMapping(Url.MAIN.MAIN_UPDATE+"/{boardIdx}")
-	public String update(@PathVariable("boardIdx") String boardIdx, Model model) {
+	public String update(@PathVariable("boardIdx") int boardIdx, Model model) {
+		
 		log.info("boardIdx={}", boardIdx);
-		model.addAttribute("boardInfo", mainMapper.selectBoard(boardIdx));
-		model.addAttribute("boardIdx", boardIdx);
 		
-		int viewCount = (int) mainMapper.selectBoard(boardIdx).get("viewCount");
+		//게시판 상세 데이터 조회
+		Map<String, Object> boardInfo = mainMapper.selectBoard(boardIdx);
 		
-		log.info("viewCount={}", viewCount);
+		//게시판 상세 파일 리스트 조회
+		List<Map<String, Object>> boardFileInfo = mainMapper.selectBoardFile(boardIdx);
 		
-		Map<String, Object> params = new HashMap<String, Object>();
-		viewCount++;
-		params.put("boardIdx", boardIdx);
-		params.put("viewCount", viewCount);
+		if(boardInfo != null) {
+			model.addAttribute("boardInfo", boardInfo);
+			model.addAttribute("boardIdx", boardIdx);
+			model.addAttribute("boardFileInfo", boardFileInfo);
+			
+			//조회수 업데이트
+			mainService.updateViewCount(boardIdx);
+		}
 		
- 		//조회수 업데이트
-		mainMapper.updateViewCount(params);
+		else {
+			model.addAttribute("boardIdx", "");
+		}
 		
 		return Url.MAIN.MAIN_UPDATE_JSP;
 	}
@@ -107,7 +121,32 @@ public class MainController extends CoTopComponent {
 	public Map<String, Object> updateSubmit(@RequestBody Map<String, Object> params) {
 		log.info("params={}", params);
 		mainMapper.updateBoard(params);
+		
+		//파일 등록할게 있을경우만
+		insertBoardFile(params);
+		
+		//넘어온 파일 삭제 시퀀스 삭제처리
+		if(params.get("deleteFileIdxs") != null) {
+			String deleteFileIdxs = (String) params.get("deleteFileIdxs"); 
+			String[] fileIdxsArray = deleteFileIdxs.split(",");
+			
+			//해당 시퀀스 삭제처리
+			for(int i=0; i<fileIdxsArray.length; i++) {
+				String fileId = fileIdxsArray[i];
+				fileMapper.deleteFile(fileId);
+			}
+		}
 		return params;
+	}
+	
+	/** 게시판 삭제 */
+	@ResponseBody
+	@PostMapping(Url.MAIN.MAIN_DELETE)
+	public List<String> deleteSubmit(@RequestBody List<String> boardIdxArray) {
+		
+		log.info("boardIdxArray={}", boardIdxArray);
+		mainService.deleteBoard(boardIdxArray);
+		return boardIdxArray;
 	}
 	
 	//server health check
@@ -121,6 +160,21 @@ public class MainController extends CoTopComponent {
 	      pw.write(" - Active Profile : " + profile + "\n");
 	      pw.write(" - Client IP : " + ip);
 	      pw.close();
-	   }
+	}
+	
+	//게시판 파일 등록
+	private void insertBoardFile(Map<String, Object> params) {
+		//파일 등록할게 있을경우만
+		if(params.get("fileIdxs") != null) {
+			//파일 등록
+			String fileIdxs = ((String) params.get("fileIdxs")).replace("[", "").replace("]", "");
+			String[] fileIdxArray = fileIdxs.split(",");
+			
+	        for (int i=0; i<fileIdxArray.length; i++) {
+	        	params.put("fileId", fileIdxArray[i]);
+	        	mainMapper.insertBoardFile(params);
+	        }
+		}
+	}
 	
 }

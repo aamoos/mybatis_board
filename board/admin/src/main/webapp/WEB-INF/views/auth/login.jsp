@@ -21,10 +21,10 @@
             <input type="text" id="loginPw" class="fadeIn third" name="up" placeholder="비밀번호를 입력해주세요" onkeyup="enterkey()">
             <input type="button" class="fadeIn fourth" value="Log In" onclick="loginSubmit()">
         </form>
-
+		
         <!-- Remind Passowrd -->
         <div id="formFooter">
-            <a class="underlineHover" href="/auth/join">회원가입</a>
+            <a class="underlineHover" href="${ct:url('AUTH.JOIN')}">회원가입</a>
         </div>
 
     </div>

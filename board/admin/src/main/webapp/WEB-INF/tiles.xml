@@ -80,5 +80,9 @@
 	<definition name="/tiles/single/auth/login" template="/WEB-INF/views/auth/login.jsp">
 		<put-attribute name="meta"			value="/WEB-INF/template/common/meta.jsp" />
 	</definition>
+	
+	<definition name="/tiles/single/auth/join" template="/WEB-INF/views/auth/join.jsp">
+		<put-attribute name="meta"			value="/WEB-INF/template/common/meta.jsp" />
+	</definition>
    
 </tiles-definitions>
