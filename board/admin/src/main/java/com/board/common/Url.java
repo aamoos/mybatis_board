@@ -23,7 +23,7 @@ public final class Url {
 	 
 		/* 사용자 등록 */
 		public static final String INSERT_USER = "/auth/insertUser";
-		
+		 
 		/* 로그인 인증 요청 */
 		public static final String LOGIN_PROC = "/auth/login-proc";
 		 
