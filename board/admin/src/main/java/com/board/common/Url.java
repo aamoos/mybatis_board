@@ -20,7 +20,7 @@ public final class Url {
 		
 		/* 회원가입 jsp */
 		public static final String JOIN_JSP = TILES_SINGLE + "/auth/join";
-	
+	 
 		/* 사용자 등록 */
 		public static final String INSERT_USER = "/auth/insertUser";
 		
