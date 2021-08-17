@@ -92,7 +92,7 @@
 		
 		$.ajax({
 	         type : 'POST'
-	        ,url : '/board/write'
+	        ,url : "${ct:url('MAIN.MAIN_WRITE')}"
 	        ,dataType : 'json'
 	        ,data : JSON.stringify(params) 
 	        ,contentType: 'application/json'
@@ -125,7 +125,7 @@
 		$.ajax({
 	   	      type: "POST",
 	   	   	  enctype: "multipart/form-data",
-	   	      url: "/file-upload",
+	   	      url: "${ct:url('COMMON.FILE_UPLOAD')}",
 	       	  data : formData,
 	       	  processData: false,
 	   	      contentType: false,

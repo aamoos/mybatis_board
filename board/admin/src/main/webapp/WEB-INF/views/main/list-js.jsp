@@ -24,10 +24,11 @@ function goPage(pageNum){
 	var params = {
 		 page : pageNum
 		,size : size
+		,searchVal : $.trim($("#searchVal").val())
 	}
 	
 	util.coGetAjaxPage(
-      "/main/ajax/list-view"
+      "${ct:url('MAIN.MAIN_LIST_AJAX')}"
       , params
       , 'list-div'
       , function(result){
@@ -91,7 +92,7 @@ function boardDelete(){
 		
 		$.ajax({
 	        type : 'POST'
-	       ,url : '/board/delete'
+	       ,url : "${ct:url('MAIN.MAIN_DELETE')}"
 	       ,dataType : 'json'
 	       ,data : JSON.stringify(boardIdxArray)
 	       ,contentType: 'application/json'

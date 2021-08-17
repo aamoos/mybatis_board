@@ -22,7 +22,10 @@
 			USE_YN = 'Y'
 		AND
 			TB.REG_ID = TA.USER_ID
-		
+		<if test="params.searchval != ''">
+			AND
+				TB.BOARD_TITLE LIKE CONCAT('%', #{params.searchVal}, '%')
+		</if>
 		ORDER BY TB.BOARD_IDX DESC		
 		<if test="pageable != null">
 			LIMIT #{pageable.offset}, #{size}
@@ -38,6 +41,10 @@
 			TB_BOARD
 		WHERE
 			USE_YN = 'Y'
+		<if test="params.searchval != ''">	
+			AND
+				BOARD_TITLE LIKE CONCAT('%', #{params.searchVal}, '%')
+		</if>	
 	</select>
 	
 	<!-- 게시판 상세 조회 -->

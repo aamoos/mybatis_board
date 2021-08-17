@@ -9,13 +9,17 @@
 
 <body>
 	<div class="container">
-	
-	<br>
-	<br>
-	<br>
-	<h1 class="page-header">게시판 목록</h1>
-	</br>
-	</br>
+		<h1 class="page-header">게시판 목록</h1>
+		<br>
+		<div class="input-group">
+		<input type="text" id="searchVal" class="form-control" placeholder="Search">
+		<div class="input-group-btn">
+			<button class="btn btn-default" type="button" onclick="goPage(0)">
+				<i class="glyphicon glyphicon-search"></i>
+			</button>
+		</div>
+	</div>
+	<br />
 	
 	<div id="list-div">
 	</div>

@@ -15,7 +15,7 @@
         </div>
 		<div id="navbar" class="navbar-collapse collapse in" aria-expanded="true" style="">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">게시판</a></li>
+				<li class="active"><a href="#">mybatis 게시판</a></li>
           	</ul>
           	
 			<ul class="nav navbar-nav navbar-right">

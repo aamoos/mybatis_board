@@ -75,13 +75,13 @@
 		
 		$.ajax({
 	         type : 'POST'
-	        ,url : '/board/update'
+	        ,url : "${ct:url('MAIN.MAIN_UPDATE')}"
 	        ,dataType : 'json'
 	        ,data : JSON.stringify(params) 
 	        ,contentType: 'application/json'
 	        ,success : function(result) {
 				alert("해당글이 정상적으로 수정되었습니다.");
-				location.href="${ct:url('MAIN.MAIN')}";
+				location.hre f= "${ct:url('MAIN.MAIN')}";
 	        },
 	        error: function(request, status, error) {
 	          
@@ -109,13 +109,13 @@
 			
 			$.ajax({
 		        type : 'POST'
-		       ,url : '/board/delete'
+		       ,url : "${ct:url('MAIN.MAIN_DELETE')}"
 		       ,dataType : 'json'
 		       ,data : JSON.stringify(boardIdxArray)
 		       ,contentType: 'application/json'
 		       ,success : function(result) {
 					alert("해당글이 정상적으로 삭제되었습니다.");
-					location.href="${ct:url('MAIN.MAIN')}";
+					location.href = "${ct:url('MAIN.MAIN')}";
 		       },
 		       error: function(request, status, error) {
 		         
@@ -187,7 +187,7 @@
 		$.ajax({
 	   	      type: "POST",
 	   	   	  enctype: "multipart/form-data",
-	   	      url: "/file-upload",
+	   	      url: "${ct:url('COMMON.FILE_UPLOAD')}",
 	       	  data : formData,
 	       	  processData: false,
 	   	      contentType: false,
