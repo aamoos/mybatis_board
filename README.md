@@ -1,2 +1,9 @@
 # mybatis_board
-spring boot, mybatis, mysql,  jquery, 멀티프로젝트 (파일업로드 게시판, 로그인)
+> ## 개발환경
+>> ### Spring Boot
+>> ### Mybatis
+>> ### Gradle
+>> ### jsp
+>> ### Jquery
+>> ### Mysql
+>> ### 멀티모듈 프로젝트
